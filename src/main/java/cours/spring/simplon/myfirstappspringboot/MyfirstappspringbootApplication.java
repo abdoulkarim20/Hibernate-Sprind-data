@@ -52,9 +52,9 @@ public class MyfirstappspringbootApplication implements CommandLineRunner {
                     System.out.println(patient1.toString());
                 });
         //La suppression d'un patient
-        for (int i=0;i<=2;i++){
-            patientRepositorie.save(new Patient(null,"Houley",new Date(),23,false));
-        }
+//        for (int i=0;i<=2;i++){
+//            patientRepositorie.save(new Patient(null,"Houley",new Date(),23,false));
+//        }
         //supprimer un patient par son id
 //        patientRepositorie.deleteById(7L);
 //        System.out.println("*Tous les patients*");
