@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.Date;
+import java.util.List;
 
 @SpringBootApplication
 public class MyfirstappspringbootApplication implements CommandLineRunner {
@@ -20,10 +23,10 @@ public class MyfirstappspringbootApplication implements CommandLineRunner {
     }
     @Override
     public void run(String... args) throws Exception {
-        patientRepositorie.save(new Patient(null,"Abdoul Karim DIALLO", new Date(),234,false));
-        patientRepositorie.save(new Patient(null,"Fatou OULARE", new Date(),24,false));
-        patientRepositorie.save(new Patient(null,"Mariame Lamarana DIALLO", new Date(),34,false));
-        patientRepositorie.save(new Patient(null,"Awoulo Amarou Shakour", new Date(),124,true));
+//        patientRepositorie.save(new Patient(null,"Abdoul Karim DIALLO", new Date(),234,false));
+//        patientRepositorie.save(new Patient(null,"Fatou OULARE", new Date(),24,false));
+//        patientRepositorie.save(new Patient(null,"Mariame Lamarana DIALLO", new Date(),34,false));
+//        patientRepositorie.save(new Patient(null,"Awoulo Amarou Shakour", new Date(),124,true));
 
         /*Affichage de tous les patients*/
         System.out.println("*Affichage de tous les patients*");
@@ -53,10 +56,17 @@ public class MyfirstappspringbootApplication implements CommandLineRunner {
             patientRepositorie.save(new Patient(null,"Houley",new Date(),23,false));
         }
         //supprimer un patient par son id
-        patientRepositorie.deleteById(7L);
-        System.out.println("*Tous les patients*");
-        patientRepositorie.findAll().forEach(patient5 -> {
-            System.out.println(patient5.toString());
+//        patientRepositorie.deleteById(7L);
+//        System.out.println("*Tous les patients*");
+//        patientRepositorie.findAll().forEach(patient5 -> {
+//            System.out.println(patient5.toString());
+//        });
+        System.out.println("/*Pagination*/");
+        //pagination
+        Page<Patient> patientPage=patientRepositorie.findAll(PageRequest.of(3,2));
+        List<Patient> patientList=patientPage.getContent();
+        patientList.forEach(patient1 -> {
+            System.out.println(patient1.toString());
         });
 
     }
